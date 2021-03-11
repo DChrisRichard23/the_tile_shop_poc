@@ -4,7 +4,13 @@ view: dim_customer {
 
   dimension: ascustomer_name {
     type: string
+    hidden: yes
     sql: ${TABLE}.ASCustomer_Name ;;
+  }
+
+  dimension: customer_name {
+    type: string
+    sql: ${ascustomer_name} ;;
   }
 
   dimension: city {
@@ -25,6 +31,7 @@ view: dim_customer {
 
   dimension: postal_code {
     type: number
+    map_layer_name: us_zipcode_tabulation_areas
     sql: ${TABLE}.Postal_Code ;;
   }
 
@@ -40,6 +47,7 @@ view: dim_customer {
 
   dimension: state {
     type: string
+    map_layer_name: us_states
     sql: ${TABLE}.State ;;
   }
 

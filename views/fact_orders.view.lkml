@@ -4,12 +4,33 @@ view: fact_orders {
 
   dimension: customer_id {
     type: string
+    hidden:  yes
     sql: ${TABLE}.Customer_ID ;;
   }
 
-  dimension: discount {
+  dimension: discount_in {
     type: number
+    hidden: yes
     sql: ${TABLE}.Discount ;;
+  }
+
+  dimension: discount_amount_in {
+    type: number
+    hidden: yes
+    sql: ${sales_in}*${discount_in} ;;
+    value_format: "$#,##0.00"
+  }
+
+  measure: discount_amount {
+    type: sum
+    sql: ${discount_amount_in} ;;
+    value_format: "$#,##0.00"
+  }
+
+  measure: discount_pct {
+    type: number
+    sql: (${discount_amount}/${sales})*100 ;;
+    value_format: "0.00\%"
   }
 
   dimension_group: order {
@@ -32,29 +53,64 @@ view: fact_orders {
     sql: ${TABLE}.Order_ID ;;
   }
 
+  measure: orders {
+    type: count_distinct
+    sql: ${order_id} ;;
+    value_format_name: decimal_0
+  }
+
   dimension: product_id {
     type: string
+    hidden:  yes
     sql: ${TABLE}.Product_ID ;;
   }
 
-  dimension: profit {
+  measure: products {
+    type: count_distinct
+    sql: ${product_id} ;;
+    value_format_name: decimal_0
+  }
+
+  dimension: profit_in {
     type: number
+    hidden: yes
     sql: ${TABLE}.Profit ;;
   }
 
-  dimension: quantity {
+  measure: profit {
+    type: sum
+    sql: ${profit_in} ;;
+    value_format: "$#,##0.00"
+  }
+
+  dimension: quantity_in {
     type: number
+    hidden: yes
     sql: ${TABLE}.Quantity ;;
+  }
+
+  measure: quantity {
+    type: sum
+    sql: ${quantity_in} ;;
+    value_format: "#,##0"
   }
 
   dimension: row_id {
     type: number
+    hidden:  yes
     sql: ${TABLE}.Row_ID ;;
   }
 
-  dimension: sales {
+  dimension: sales_in {
     type: number
+    hidden: yes
     sql: ${TABLE}.Sales ;;
+  }
+
+  measure: sales {
+    type: sum
+    sql: ${sales_in} ;;
+    value_format: "$#,##0.00"
   }
 
   dimension_group: ship {
