@@ -156,6 +156,12 @@ view: fact_orders {
     value_format: "$#,##0.00"
   }
 
+  measure: sales_per_customer {
+    type: number
+    sql: ${sales}/${customers} ;;
+    value_format: "$#,##0.00"
+  }
+
   dimension_group: ship {
     type: time
     timeframes: [
