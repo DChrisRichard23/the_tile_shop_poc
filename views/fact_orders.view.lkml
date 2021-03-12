@@ -101,6 +101,12 @@ view: fact_orders {
     value_format: "#,##0"
   }
 
+  measure: quantity_per_order {
+    type: number
+    sql: ${quantity}/${orders} ;;
+    value_format: "#,##0.00"
+  }
+
   dimension: row_id {
     type: number
     hidden:  yes
@@ -122,6 +128,12 @@ view: fact_orders {
   measure: sales_per_quantity {
     type: number
     sql: ${sales}/${quantity} ;;
+    value_format: "$#,##0.00"
+  }
+
+  measure: sales_per_order {
+    type: number
+    sql: ${sales}/${orders} ;;
     value_format: "$#,##0.00"
   }
 
