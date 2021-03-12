@@ -45,6 +45,11 @@ view: dim_customer {
     sql: ${TABLE}.Segment ;;
   }
 
+  dimension: customer_trips {
+    type: number
+    sql: ${TABLE}.customers_trips ;;
+  }
+
   dimension: state {
     type: string
     map_layer_name: us_states

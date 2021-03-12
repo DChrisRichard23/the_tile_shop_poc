@@ -8,6 +8,12 @@ view: fact_orders {
     sql: ${TABLE}.Customer_ID ;;
   }
 
+  measure: customers {
+    type: count_distinct
+    sql: ${customer_id} ;;
+    value_format_name: decimal_0
+  }
+
   dimension: discount_in {
     type: number
     hidden: yes
@@ -48,6 +54,13 @@ view: fact_orders {
     sql: ${TABLE}.Order_Date ;;
   }
 
+  dimension: order_to_ship_duration {
+    type: number
+    sql: DATE_DIFF(${TABLE}.Ship_Date, ${TABLE}.Order_Date, DAY) ;;
+    value_format_name: decimal_0
+  }
+
+
   measure: months {
     type: count_distinct
     sql: FORMAT_TIMESTAMP('%Y-%m', CAST(fact_orders.Order_Date  AS TIMESTAMP)) ;;
@@ -63,6 +76,12 @@ view: fact_orders {
     type: count_distinct
     sql: ${order_id} ;;
     value_format_name: decimal_0
+  }
+
+  measure: orders_percent_of_total {
+    type: percent_of_total
+    sql: ${orders} ;;
+    value_format: "0.00\%"
   }
 
   dimension: product_id {

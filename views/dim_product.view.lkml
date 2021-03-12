@@ -17,6 +17,11 @@ view: dim_product {
     sql: ${TABLE}.Product_Name ;;
   }
 
+  dimension: product_sold_count {
+    type: number
+    sql: ${TABLE}.Product_Sold_Count ;;
+  }
+
   dimension: sub_category {
     type: string
     sql: ${TABLE}.Sub_Category ;;
