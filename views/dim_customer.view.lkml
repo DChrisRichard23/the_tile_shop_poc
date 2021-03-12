@@ -11,6 +11,7 @@ view: dim_customer {
   dimension: customer_name {
     type: string
     sql: ${ascustomer_name} ;;
+    html: <a href="/dashboards-next/101?Customer+Name={{ value }}">{{ value }}</a> ;;
   }
 
   dimension: city {
