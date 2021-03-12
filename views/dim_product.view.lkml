@@ -22,6 +22,19 @@ view: dim_product {
     sql: ${TABLE}.Product_Sold_Count ;;
   }
 
+  dimension: total_product_sales {
+    type: number
+    sql: ${TABLE}.Total_Product_Sales ;;
+    value_format: "$#,##0.00"
+  }
+
+  dimension: total_product_sales_tier {
+    type: tier
+    tiers: [0,300,1000,3000,10000,30000]
+    sql: ${total_product_sales} ;;
+    value_format: "$#,##0"
+  }
+
   dimension: sub_category {
     type: string
     sql: ${TABLE}.Sub_Category ;;

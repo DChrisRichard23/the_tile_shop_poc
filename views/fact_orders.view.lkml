@@ -54,6 +54,12 @@ view: fact_orders {
     sql: ${TABLE}.Order_Date ;;
   }
 
+  dimension: order_month_num {
+    type: number
+    sql: ${TABLE}.order_month_num ;;
+  }
+
+
   dimension: order_to_ship_duration {
     type: number
     sql: DATE_DIFF(${TABLE}.Ship_Date, ${TABLE}.Order_Date, DAY) ;;
@@ -144,10 +150,23 @@ view: fact_orders {
     value_format: "$#,##0.00"
   }
 
+  dimension: item_cost {
+    type: number
+    sql: ${sales_in}/${quantity_in} ;;
+    value_format: "$#,##0.00"
+  }
+
   measure: sales_per_quantity {
     type: number
     sql: ${sales}/${quantity} ;;
     value_format: "$#,##0.00"
+  }
+
+  dimension: sales_per_quantity_tier {
+    type: tier
+    tiers: [0,50,100,200,500,1000]
+    sql: ${item_cost} ;;
+    value_format: "$#,##0"
   }
 
   measure: sales_per_order {
