@@ -20,6 +20,8 @@ view: dim_product {
   dimension: sub_category {
     type: string
     sql: ${TABLE}.Sub_Category ;;
+    html:
+    <a href="/dashboards-next/97?Sub+Category={{ value }}">{{ value }}</a> ;;
   }
 
   measure: count {

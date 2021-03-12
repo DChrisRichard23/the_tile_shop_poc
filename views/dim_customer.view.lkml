@@ -49,6 +49,8 @@ view: dim_customer {
     type: string
     map_layer_name: us_states
     sql: ${TABLE}.State ;;
+    html:
+    <a href="/dashboards-next/98?State={{ value }}">{{ value }}</a> ;;
   }
 
   measure: count {

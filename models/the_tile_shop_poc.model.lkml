@@ -12,6 +12,7 @@ persist_with: the_tile_shop_poc_default_datagroup
 
 
 explore: fact_orders {
+  label: "orders"
   join: dim_customer {
     type: left_outer
     relationship: many_to_one

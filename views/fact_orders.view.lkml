@@ -48,6 +48,12 @@ view: fact_orders {
     sql: ${TABLE}.Order_Date ;;
   }
 
+  measure: months {
+    type: count_distinct
+    sql: FORMAT_TIMESTAMP('%Y-%m', CAST(fact_orders.Order_Date  AS TIMESTAMP)) ;;
+    value_format_name: decimal_0
+  }
+
   dimension: order_id {
     type: string
     sql: ${TABLE}.Order_ID ;;
@@ -110,6 +116,12 @@ view: fact_orders {
   measure: sales {
     type: sum
     sql: ${sales_in} ;;
+    value_format: "$#,##0.00"
+  }
+
+  measure: sales_per_quantity {
+    type: number
+    sql: ${sales}/${quantity} ;;
     value_format: "$#,##0.00"
   }
 
