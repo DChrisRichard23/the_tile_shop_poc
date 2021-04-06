@@ -23,5 +23,15 @@ explore: fact_orders {
     relationship: many_to_one
     sql_on: ${fact_orders.product_id} = ${dim_product.product_id} ;;
   }
+  join: dim_order_date {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${fact_orders.order_date} = ${dim_order_date.order_date} ;;
+  }
+  join: dim_ship_date {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${fact_orders.ship_date} = ${dim_ship_date.ship_date} ;;
+  }
 
 }

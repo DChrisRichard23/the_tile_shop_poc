@@ -39,15 +39,11 @@ view: fact_orders {
     value_format: "0.00\%"
   }
 
+
   dimension_group: order {
     type: time
     timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
+      date
     ]
     convert_tz: no
     datatype: date
@@ -184,12 +180,7 @@ view: fact_orders {
   dimension_group: ship {
     type: time
     timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
+      date
     ]
     convert_tz: no
     datatype: date
