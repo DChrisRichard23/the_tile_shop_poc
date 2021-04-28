@@ -86,6 +86,12 @@ view: fact_orders {
     value_format: "0.00\%"
   }
 
+  measure: orders_per_customer {
+    type: number
+    sql: ${orders}/${customers} ;;
+    value_format: "#,##0.0"
+  }
+
   dimension: product_id {
     type: string
     hidden:  yes
@@ -108,6 +114,12 @@ view: fact_orders {
     type: sum
     sql: ${profit_in} ;;
     value_format: "$#,##0.00"
+  }
+
+  measure: profit_pct {
+    type: number
+    sql: (${profit}/${sales})*100 ;;
+    value_format: "0.00\%"
   }
 
   dimension: quantity_in {
@@ -144,6 +156,12 @@ view: fact_orders {
     type: sum
     sql: ${sales_in} ;;
     value_format: "$#,##0.00"
+  }
+
+  measure: sales_percent_of_total {
+    type: percent_of_total
+    sql: ${sales} ;;
+    value_format: "0.00\%"
   }
 
   dimension: item_cost {
