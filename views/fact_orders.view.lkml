@@ -31,12 +31,14 @@ view: fact_orders {
     type: sum
     sql: ${discount_amount_in} ;;
     value_format: "$#,##0.00"
+    label: "Discount Amt"
   }
 
   measure: discount_pct {
     type: number
     sql: (${discount_amount}/${sales})*100 ;;
     value_format: "0.00\%"
+    label: "Discount Ratio"
   }
 
 
@@ -84,12 +86,14 @@ view: fact_orders {
     type: percent_of_total
     sql: ${orders} ;;
     value_format: "0.00\%"
+    label: "Orders % Tot"
   }
 
   measure: orders_per_customer {
     type: number
     sql: ${orders}/${customers} ;;
     value_format: "#,##0.0"
+    label: "Orders/Customer"
   }
 
   dimension: product_id {
@@ -120,6 +124,14 @@ view: fact_orders {
     type: number
     sql: (${profit}/${sales})*100 ;;
     value_format: "0.00\%"
+    label: "Profit Ratio"
+  }
+
+  measure: profit_percent_of_total {
+    type: percent_of_total
+    sql: ${profit} ;;
+    value_format: "0.00\%"
+    label: "Profit % Tot"
   }
 
   dimension: quantity_in {
@@ -132,12 +144,14 @@ view: fact_orders {
     type: sum
     sql: ${quantity_in} ;;
     value_format: "#,##0"
+    label: "Items"
   }
 
   measure: quantity_per_order {
     type: number
     sql: ${quantity}/${orders} ;;
     value_format: "#,##0.00"
+    label: "Items/Order"
   }
 
   dimension: row_id {
@@ -162,6 +176,7 @@ view: fact_orders {
     type: percent_of_total
     sql: ${sales} ;;
     value_format: "0.00\%"
+    label: "Sales % Tot"
   }
 
   dimension: item_cost {
@@ -174,6 +189,7 @@ view: fact_orders {
     type: number
     sql: ${sales}/${quantity} ;;
     value_format: "$#,##0.00"
+    label: "Sales/Item"
   }
 
   dimension: sales_per_quantity_tier {
@@ -181,18 +197,21 @@ view: fact_orders {
     tiers: [0,50,100,200,500,1000]
     sql: ${item_cost} ;;
     value_format: "$#,##0"
+    label: "Sales/Item Tier"
   }
 
   measure: sales_per_order {
     type: number
     sql: ${sales}/${orders} ;;
     value_format: "$#,##0.00"
+    label: "Sales/Order"
   }
 
   measure: sales_per_customer {
     type: number
     sql: ${sales}/${customers} ;;
     value_format: "$#,##0.00"
+    label: "Sales/Customer"
   }
 
   dimension_group: ship {
@@ -213,5 +232,6 @@ view: fact_orders {
   measure: count {
     type: count
     drill_fields: []
+    label: "Order Lines"
   }
 }

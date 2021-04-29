@@ -33,5 +33,10 @@ explore: fact_orders {
     relationship: many_to_one
     sql_on: ${fact_orders.ship_date} = ${dim_ship_date.ship_date} ;;
   }
+  join: button_table {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: 1 = 1 ;;
+  }
 
 }

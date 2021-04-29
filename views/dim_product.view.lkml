@@ -5,6 +5,7 @@ view: dim_product {
   dimension: category {
     type: string
     sql: ${TABLE}.Category ;;
+    html: <a href="/dashboards-next/117?Category={{ value }}">{{ value }}</a> ;;
   }
 
   dimension: product_id {
@@ -15,6 +16,7 @@ view: dim_product {
   dimension: product_name {
     type: string
     sql: ${TABLE}.Product_Name ;;
+    html: <a href="/dashboards-next/118?Product%20Name={{ value }}">{{ value }}</a> ;;
   }
 
   dimension: product_sold_count {
@@ -38,8 +40,7 @@ view: dim_product {
   dimension: sub_category {
     type: string
     sql: ${TABLE}.Sub_Category ;;
-    html:
-    <a href="/dashboards-next/97?Sub+Category={{ value }}">{{ value }}</a> ;;
+    html: <a href="/dashboards-next/116?Sub+Category={{ value }}">{{ value }}</a> ;;
   }
 
   measure: count {
