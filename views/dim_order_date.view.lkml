@@ -105,7 +105,7 @@ view: dim_order_date {
   }
 
   dimension: order_year {
-    type: number
+    type: string
     sql: ${TABLE}.order_year ;;
   }
 

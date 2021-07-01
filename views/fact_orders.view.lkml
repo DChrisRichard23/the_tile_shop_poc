@@ -52,6 +52,16 @@ view: fact_orders {
     sql: ${TABLE}.Order_Date ;;
   }
 
+  measure: min_order_date {
+    type: date
+    sql: MIN(${order_date}) ;;
+  }
+
+  measure: max_order_date {
+    type: date
+    sql: MAX(${order_date}) ;;
+  }
+
   dimension: order_month_num {
     type: number
     sql: ${TABLE}.order_month_num ;;
@@ -72,6 +82,7 @@ view: fact_orders {
   }
 
   dimension: order_id {
+    primary_key: yes
     type: string
     sql: ${TABLE}.Order_ID ;;
   }
@@ -206,6 +217,7 @@ view: fact_orders {
     value_format: "$#,##0.00"
     label: "Sales/Order"
   }
+
 
   measure: sales_per_customer {
     type: number

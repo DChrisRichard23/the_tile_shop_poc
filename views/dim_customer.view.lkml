@@ -2,16 +2,10 @@ view: dim_customer {
   sql_table_name: `the_tile_shop_poc.dim_customer`
     ;;
 
-  dimension: ascustomer_name {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.ASCustomer_Name ;;
-  }
-
   dimension: customer_name {
     type: string
-    sql: ${ascustomer_name} ;;
-    html: <a href="/dashboards-next/101?Customer+Name={{ value }}">{{ value }}</a> ;;
+    sql: ${TABLE}.Customer_Name ;;
+    html: <a href="/dashboards-next/120?Customer+Name={{ value }}">{{ value }}</a> ;;
   }
 
   dimension: city {
@@ -59,8 +53,13 @@ view: dim_customer {
     <a href="/dashboards-next/98?State={{ value }}">{{ value }}</a> ;;
   }
 
+  dimension: city_state {
+    type: string
+    sql: ${city} || ", " || ${state} ;;
+  }
+
   measure: count {
     type: count
-    drill_fields: [ascustomer_name]
+    drill_fields: [customer_name]
   }
 }

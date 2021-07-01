@@ -9,6 +9,7 @@ view: dim_product {
   }
 
   dimension: product_id {
+    primary_key: yes
     type: string
     sql: ${TABLE}.Product_ID ;;
   }
